@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecycle of your junk · Hampton Roads | Recycling & Donation</title>
+    <!-- Inter font (clean, modern, highly readable) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) minimal icons for gentle UX -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e9f0e6;   /* soft coastal tone */
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e3b2c;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* main card – clean, elevated */
+        .journey-card {
+            max-width: 1150px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 44px;
+            box-shadow: 0 20px 35px -12px rgba(40, 70, 45, 0.14);
+            padding: 3rem 2.8rem;
+            transition: all 0.15s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #2d6a4f;        /* deep green */
+            margin-bottom: 0.4rem;
+            border-left: 6px solid #578b7c;  /* coastal blue-green */
+            padding-left: 1.5rem;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #4e7b64;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            padding-left: 2rem;
+            border-left: 2px solid #b6cfbf;
+        }
+
+        p {
+            margin-bottom: 1.6rem;
+            color: #2a4f39;
+        }
+
+        /* link styling – no blinking, only subtle border & color */
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.15s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .text-link {
+            color: #3b7a5c;
+            border-bottom: 1px solid #c0d9c5;
+        }
+        .text-link:hover {
+            color: #246349;
+            border-bottom-color: #246349;
+        }
+
+        /* interlink styles – badge-like, minimal */
+        .junk-badge {
+            background: #edf4ec;
+            padding: 0.25rem 1rem 0.25rem 0.7rem;
+            border-radius: 60px;
+            color: #2d6a4f;
+            font-weight: 500;
+            white-space: nowrap;
+            border: 1px solid #bed7be;
+            transition: background 0.15s, border-color 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .junk-badge i {
+            font-size: 0.9rem;
+            color: #6d9b7c;
+        }
+        .junk-badge:hover {
+            background: #d9ead9;
+            border-color: #4b8f63;
+        }
+
+        .gmb-badge, .repo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #f0f3ec;
+            border-radius: 60px;
+            padding: 0.25rem 1.1rem 0.25rem 0.7rem;
+            margin: 0 0.1rem;
+            font-size: 0.9rem;
+            border: 1px solid #c4d4bf;
+            transition: 0.12s;
+            white-space: nowrap;
+            color: #2d6a4f;
+        }
+        .gmb-badge i, .repo-badge i {
+            margin-right: 6px;
+            font-size: 0.85rem;
+            color: #578b7c;
+        }
+        .gmb-badge:hover, .repo-badge:hover {
+            background: #dfeadc;
+            border-color: #9cbf9c;
+        }
+
+        /* material journey cards */
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .material-card {
+            background: #f9fcf8;
+            border-radius: 34px;
+            padding: 2.2rem 1.5rem;
+            border: 1px solid #deecd6;
+            transition: transform 0.12s, box-shadow 0.15s;
+            box-shadow: 0 6px 12px rgba(40, 70, 30, 0.02);
+        }
+        .material-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 30px -12px rgba(60, 100, 60, 0.14);
+            border-color: #c6dec2;
+        }
+
+        .material-icon {
+            font-size: 2.3rem;
+            color: #578b7c;
+            margin-bottom: 1.2rem;
+        }
+
+        .material-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #2d6a4f;
+        }
+
+        .material-card p {
+            font-size: 0.98rem;
+            margin-bottom: 1.2rem;
+            color: #3b6b53;
+        }
+
+        .journey-step {
+            background: #ecf4ea;
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            color: #2d6a4f;
+            border: 1px solid #c0d9bc;
+        }
+
+        /* sorting & partnerships section */
+        .sorting-block {
+            background: #f2f7f1;
+            border-radius: 32px;
+            padding: 2.2rem 2.5rem;
+            margin: 2.5rem 0 2rem;
+            border-left: 6px solid #578b7c;
+        }
+
+        .sorting-block h2 {
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: #2d6a4f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.2rem;
+        }
+
+        .partner-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .partner-item {
+            background: white;
+            border-radius: 60px;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #c7d9c1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .partner-item i {
+            color: #578b7c;
+        }
+
+        /* environmental benefit */
+        .benefit-box {
+            background: #f5f7f0;
+            border-radius: 30px;
+            padding: 2rem 2.2rem;
+            margin: 2rem 0;
+        }
+
+        /* footer */
+        .footer-links {
+            border-top: 1px dashed #c9dac2;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: #4e7b64;
+            font-size: 0.95rem;
+        }
+        .link-group {
+            display: flex;
+            gap: 0.5rem 1.2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .journey-card { padding: 2rem 1.5rem; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="journey-card">
+        <h1>♻️ The lifecycle of your junk: recycling & donation after pickup</h1>
+        <div class="subhead">Hampton Roads · metal · wood · electronics · furniture</div>
+
+        <!-- intro with required interlinks: Junk removal Virginia + GMB + Github Repositary -->
+        <p>
+            <i class="fa-regular fa-arrow-right-arrow-left" style="color:#578b7c; margin-right:6px;"></i> 
+            Ever wonder where your old sofa, broken TV, or scrap wood goes after the hauling truck leaves? In Hampton Roads, responsible junk removal means a second life for most materials. 
+            <a href="https://bluekoihauling.com/" target="_blank" rel="noopener" class="junk-badge"><i class="fa-regular fa-truck"></i>Junk removal Virginia</a> 
+            partners with local recyclers and charities to maximize diversion. Check our <a href="https://maps.app.goo.gl/6WCF6sNRLMEiLPmZA" target="_blank" rel="noopener" class="gmb-badge"><i class="fa-brands fa-google"></i> GMB</a> for updates, and explore the <a href="https://matrixdestinynet.github.io/Understanding-Virginia-s-Landfill-Bans/" target="_blank" rel="noopener" class="repo-badge"><i class="fa-regular fa-code-branch"></i> Github Repositary</a> for deeper data.
+        </p>
+
+        <!-- material journey grid -->
+        <div class="journey-grid">
+            <!-- Metal -->
+            <div class="material-card">
+                <div class="material-icon"><i class="fa-solid fa-gear"></i></div>
+                <h3>Metal</h3>
+                <p>Steel, copper, aluminum are sorted, shredded, and sold to processors like <strong>Norfolk Iron & Metal</strong>. Melted into new products — cans, car parts, beams.</p>
+                <span class="journey-step"><i class="fa-regular fa-arrow-right"></i> 80% less energy vs. virgin</span>
+            </div>
+            <!-- Wood -->
+            <div class="material-card">
+                <div class="material-icon"><i class="fa-solid fa-tree"></i></div>
+                <h3>Wood</h3>
+                <p>Clean lumber goes to <strong>Habitat for Humanity ReStore</strong> or becomes mulch/compost. Painted wood is processed for biomass fuel.</p>
+                <span class="journey-step"><i class="fa-regular fa-arrow-right"></i> Mulch for local parks</span>
+            </div>
+            <!-- Electronics -->
+            <div class="material-card">
+                <div class="material-icon"><i class="fa-solid fa-laptop"></i></div>
+                <h3>Electronics</h3>
+                <p>R2 certified recyclers (like <strong>eWaste Recycling Systems</strong>) dismantle: precious metals recovered, plastics pelletized.</p>
+                <span class="journey-step"><i class="fa-regular fa-arrow-right"></i> Gold, silver, copper</span>
+            </div>
+            <!-- Furniture -->
+            <div class="material-card">
+                <div class="material-icon"><i class="fa-solid fa-couch"></i></div>
+                <h3>Furniture</h3>
+                <p>Gently used items go to <strong>Goodwill</strong>, <strong>Salvation Army</strong>, or <strong>Furnish Hope</strong> in Norfolk. Damaged items are deconstructed: wood recycled, foam to carpet padding.</p>
+                <span class="journey-step"><i class="fa-regular fa-arrow-right"></i> Community support</span>
+            </div>
+        </div>
+
+        <!-- sorting process & local partnerships -->
+        <div class="sorting-block">
+            <h2><i class="fa-regular fa-sort"></i> The sorting process & local partners</h2>
+            <p>After pickup, items are taken to a material recovery facility (MRF) or directly to partners:</p>
+            <div class="partner-list">
+                <span class="partner-item"><i class="fa-regular fa-building"></i> TFC Recycling (Chesapeake)</span>
+                <span class="partner-item"><i class="fa-regular fa-hand-holding-heart"></i> Habitat for Humanity</span>
+                <span class="partner-item"><i class="fa-regular fa-computer"></i> ewaste VA</span>
+                <span class="partner-item"><i class="fa-regular fa-leaf"></i> Hampton Composting</span>
+            </div>
+            <p>Sorting lines separate ferrous metals (magnets), non‑ferrous (eddy currents), wood by grade, and electronics for manual dismantling. Non‑recyclable residuals go to <strong>Atlantic Waste Disposal</strong> in Suffolk.</p>
+        </div>
+
+        <!-- donation & charity integration -->
+        <div style="background: #f1f6ed; border-radius: 26px; padding: 1.5rem 2rem; margin: 2rem 0;">
+            <h3 style="display: flex; gap:10px; color:#2d6a4f; margin-bottom:0.8rem;"><i class="fa-regular fa-hand-holding-heart"></i> Donation partnerships</h3>
+            <p>Usable furniture, appliances, and building materials are diverted to <strong>Habitat ReStore</strong> (Newport News), <strong>St. Vincent de Paul</strong>, and <strong>Union Mission</strong>. In 2024, Hampton Roads haulers diverted over 2,000 tons to local charities.</p>
+        </div>
+
+        <!-- environmental benefit of diversion -->
+        <div class="benefit-box">
+            <h3 style="color:#2d6a4f; margin-bottom:1rem;"><i class="fa-regular fa-earth-americas"></i> Environmental benefit</h3>
+            <p>Every ton of recycled material saves:</p>
+            <ul style="margin-left: 1.8rem; color: #2e6045;">
+                <li><i class="fa-regular fa-check" style="color:#578b7c;"></i> 4,000 kWh of energy (metal)</li>
+                <li><i class="fa-regular fa-check" style="color:#578b7c;"></i> 17 trees (wood)</li>
+                <li><i class="fa-regular fa-check" style="color:#578b7c;"></i> 1.5 tons of CO₂ (electronics)</li>
+            </ul>
+            <p style="margin-top:1rem;">Diversion also extends landfill life — critical for the Chesapeake Bay region’s environmental health.</p>
+        </div>
+
+        <!-- GMB and Github second mentions -->
+        <p style="background: #e6f0e4; padding: 1rem 1.8rem; border-radius: 60px;">
+            <i class="fa-regular fa-circle-check" style="color:#2d6a4f;"></i> 
+            Follow our <a href="https://maps.app.goo.gl/6WCF6sNRLMEiLPmZA" target="_blank" rel="noopener" class="gmb-badge"><i class="fa-brands fa-google"></i> GMB</a> for seasonal recycling events, and check the <a href="https://matrixdestinynet.github.io/Understanding-Virginia-s-Landfill-Bans/" target="_blank" rel="noopener" class="repo-badge"><i class="fa-regular fa-code-branch"></i> Github Repositary</a> for a full list of banned materials and local ordinances.
+        </p>
+
+        <!-- footer links (all three required interlinks) -->
+        <div class="footer-links">
+            <span><i class="fa-regular fa-arrow-rotate-left"></i> from pickup to purpose · hampton roads</span>
+            <div class="link-group">
+                <a href="https://bluekoihauling.com/" target="_blank" rel="noopener" class="junk-badge"><i class="fa-regular fa-truck"></i>Junk removal Virginia</a>
+                <a href="https://maps.app.goo.gl/6WCF6sNRLMEiLPmZA" target="_blank" rel="noopener" class="gmb-badge"><i class="fa-brands fa-google"></i> GMB</a>
+                <a href="https://matrixdestinynet.github.io/Understanding-Virginia-s-Landfill-Bans/" target="_blank" rel="noopener" class="repo-badge"><i class="fa-regular fa-code-branch"></i> Github Repositary</a>
+            </div>
+        </div>
+
+        <!-- no blinking animations – only hover transitions with 0.12–0.15s -->
+    </div>
+</body>
+</html>
